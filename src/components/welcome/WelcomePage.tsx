@@ -38,13 +38,13 @@ const WelcomePage = ({ onLoginRequired, onExploreFeatures, onAboutPage }: Welcom
       </div>
 
       {/* Subtle Grid Pattern */}
-      <div 
-        className="absolute inset-0 opacity-10" 
+      <div
+        className="absolute inset-0 opacity-10"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M0 0h40v40H0V0zm20 20a20 20 0 1 1 0-40 20 20 0 0 1 0 40z'/%3E%3C/g%3E%3C/svg%3E")`
         }}
       />
-      
+
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Enhanced Header */}
         <header className="p-6 flex justify-between items-center backdrop-blur-sm bg-white/5 border-b border-white/10">
@@ -60,19 +60,19 @@ const WelcomePage = ({ onLoginRequired, onExploreFeatures, onAboutPage }: Welcom
               </p>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-4">
-            <Button 
+            <Button
               onClick={onAboutPage}
-              variant="ghost" 
+              variant="ghost"
               className="text-white hover:bg-white/10"
             >
               <Info className="h-4 w-4 mr-2" />
               About
             </Button>
-            <Button 
+            <Button
               onClick={onLoginRequired}
-              variant="outline" 
+              variant="outline"
               className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
             >
               Sign In
@@ -95,20 +95,20 @@ const WelcomePage = ({ onLoginRequired, onExploreFeatures, onAboutPage }: Welcom
                 </h2>
               </div>
               <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Transform your academic journey with our comprehensive note-taking platform. 
+                Transform your academic journey with our comprehensive note-taking platform.
                 Create, organize, and share knowledge like never before.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button 
+                <Button
                   onClick={onLoginRequired}
-                  size="lg" 
+                  size="lg"
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 text-lg font-semibold shadow-2xl hover:shadow-purple-500/25 transform hover:scale-105 transition-all duration-200"
                 >
                   Start Your Journey
                 </Button>
-                <Button 
+                <Button
                   onClick={onExploreFeatures}
-                  variant="outline" 
+                  variant="outline"
                   size="lg"
                   className="border-2 border-white/30 text-white hover:bg-white/10 px-10 py-4 text-lg font-semibold backdrop-blur-sm hover:border-white/50 transition-all duration-200"
                 >
@@ -121,8 +121,8 @@ const WelcomePage = ({ onLoginRequired, onExploreFeatures, onAboutPage }: Welcom
             {/* Enhanced Features Grid */}
             <div className="grid md:grid-cols-3 gap-8 mb-20">
               {features.map((feature, index) => (
-                <Card 
-                  key={index} 
+                <Card
+                  key={index}
                   className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/20 hover:border-white/30 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
                 >
                   <CardHeader className="pb-4">
@@ -143,17 +143,17 @@ const WelcomePage = ({ onLoginRequired, onExploreFeatures, onAboutPage }: Welcom
                 <div className="mb-6">
                   <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-full border border-yellow-400/30 mb-4">
                     <Star className="h-5 w-5 text-yellow-300" />
-                    <span className="text-yellow-200 font-medium">Join 10,000+ Students</span>
+                    <span className="text-yellow-200 font-medium">Join 100+ Students</span>
                   </div>
                 </div>
                 <h3 className="text-4xl font-bold text-white mb-6">
                   Ready to Transform Your Studies?
                 </h3>
                 <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
-                  Join thousands of successful students who have revolutionized their learning experience. 
+                  Join thousands of successful students who have revolutionized their learning experience.
                   Start your journey to academic excellence today.
                 </p>
-                <Button 
+                <Button
                   onClick={onLoginRequired}
                   size="lg"
                   className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white px-16 py-4 text-xl font-bold shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all duration-300"
