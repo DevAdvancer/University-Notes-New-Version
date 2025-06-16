@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Plus, Users, Search, Filter, GraduationCap, LogOut, Settings, User, Youtube, BookOpen, Star, TrendingUp, Clock, FileText, Info } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
@@ -42,7 +42,7 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
   const [loading, setLoading] = useState(true);
   const [showProfile, setShowProfile] = useState(false);
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
-  const [userProfile, setUserProfile] = useState<{ full_name: string; can_create_notes: boolean } | null>(null);
+  const [userProfile, setUserProfile] = useState<{ full_name: string; can_create_notes: boolean; avatar_url: string | null } | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
     try {
       const { data, error } = await supabase
         .from('profiles')
-        .select('full_name, can_create_notes')
+        .select('full_name, can_create_notes, avatar_url')
         .eq('id', user.id)
         .single();
 
@@ -377,10 +377,11 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
             >
               {userRole === 'admin' ? 'Admin' : 'Student'}
             </Badge>
-            <Avatar 
-              className="bg-gradient-to-br from-blue-500 to-purple-600 cursor-pointer shadow-lg hover:shadow-xl transition-all duration-200 w-12 h-12" 
+            <Avatar
+              className="bg-gradient-to-br from-blue-500 to-purple-600 cursor-pointer shadow-lg hover:shadow-xl transition-all duration-200 w-12 h-12"
               onClick={() => setShowProfile(true)}
             >
+              <AvatarImage src={userProfile?.avatar_url || undefined} alt="Avatar" />
               <AvatarFallback className="text-white font-bold text-lg bg-transparent">
                 {getAvatarText()}
               </AvatarFallback>
