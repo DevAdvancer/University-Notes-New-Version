@@ -23,11 +23,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface Profile {
   id: string;
   email: string;
   full_name: string;
+  avatar_url: string | null;
   role: string;
   can_create_notes: boolean;
   created_at: string;
@@ -188,11 +190,12 @@ const UserManagement = ({ onClose }: UserManagementProps) => {
                   <TableRow key={profile.id} className="border-gray-700">
                     <TableCell className="text-white">
                       <div className="flex items-center space-x-2">
-                        <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
-                          <span className="text-sm font-medium">
+                        <Avatar className="w-8 h-8 bg-gray-700">
+                          <AvatarImage src={profile.avatar_url || undefined} alt={profile.full_name || profile.email} />
+                          <AvatarFallback className="text-sm font-medium">
                             {profile.full_name?.charAt(0).toUpperCase() || profile.email.charAt(0).toUpperCase()}
-                          </span>
-                        </div>
+                          </AvatarFallback>
+                        </Avatar>
                         <div>
                           <div className="font-medium">{profile.full_name || 'No name'}</div>
                         </div>
