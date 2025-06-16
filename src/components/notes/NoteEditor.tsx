@@ -285,6 +285,16 @@ const NoteEditor = ({ note, onClose, onSave }: NoteEditorProps) => {
 
   const renderMarkdown = (markdown: string) => {
     let html = markdown
+      .replace(/```([\s\S]*?)```/gim, (_, code) => {
+        const escaped = code
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\n/g, "<br/>");
+        return `<pre class="bg-gray-900 border border-gray-700 rounded-xl p-4 overflow-x-auto my-6"><code class="text-green-300 text-sm font-mono">${escaped}</code></pre>`;
+      })
+      .replace(/^> (.*$)/gim, '<blockquote class="border-l-4 border-blue-500 pl-4 italic text-slate-300 my-4">$1</blockquote>')
+      .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" class="text-blue-400 underline" target="_blank" rel="noopener noreferrer">$1</a>')
       .replace(/^# (.*$)/gim, '<h1 class="text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">$1</h1>')
       .replace(/^## (.*$)/gim, '<h2 class="text-3xl font-semibold mb-5 text-white">$1</h2>')
       .replace(/^### (.*$)/gim, '<h3 class="text-2xl font-medium mb-4 text-gray-200">$1</h3>')
@@ -494,8 +504,13 @@ const NoteEditor = ({ note, onClose, onSave }: NoteEditorProps) => {
 
 ## Use Markdown for Rich Formatting
 - **Bold text** for emphasis
-- *Italic text* for style  
-- `Code snippets` for technical content
+- *Italic text* for style
+- `Inline code` for quick snippets
+- ```
+Code blocks
+``` for longer examples
+- > Blockquotes for references
+- [Helpful link](https://example.com) for resources
 - Links, lists, and more!
 
 Drag and drop images directly into this editor or use the upload button above. Images are automatically compressed to save storage space."

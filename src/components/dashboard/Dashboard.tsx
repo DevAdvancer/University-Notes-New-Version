@@ -189,6 +189,16 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
   // Simple markdown to HTML converter for preview
   const renderMarkdown = (markdown: string) => {
     return markdown
+      .replace(/```([\s\S]*?)```/gim, (_, code) => {
+        const escaped = code
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\n/g, "<br/>");
+        return `<pre class="bg-gray-900 border border-gray-700 rounded-xl p-4 overflow-x-auto my-6"><code class="text-green-300 text-sm font-mono">${escaped}</code></pre>`;
+      })
+      .replace(/^> (.*$)/gim, '<blockquote class="border-l-4 border-blue-500 pl-4 italic text-slate-300 my-4">$1</blockquote>')
+      .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" class="text-blue-400 underline" target="_blank" rel="noopener noreferrer">$1</a>')
       .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold mb-4 text-white">$1</h1>')
       .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-semibold mb-3 text-gray-200">$1</h2>')
       .replace(/^### (.*$)/gim, '<h3 class="text-xl font-medium mb-2 text-gray-300">$1</h3>')
