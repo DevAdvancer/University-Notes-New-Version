@@ -67,8 +67,13 @@ const DashboardHeader = ({ onManageUsers, onAboutPage }: DashboardHeaderProps) =
     await signOut();
   };
 
-  const handleProfileUpdate = () => {
-    fetchUserProfile();  // Refresh profile data
+  const handleProfileUpdate = (newAvatarUrl?: string) => {
+    // If we receive a new avatar URL directly from the profile modal, update it
+    // immediately to avoid stale data issues.
+    if (newAvatarUrl) {
+      setAvatarUrl(newAvatarUrl);
+    }
+    fetchUserProfile();
   };
 
   return (

@@ -12,7 +12,11 @@ import AvatarUpload from "@/components/ui/avatar-upload";
 
 interface UserProfileProps {
   onClose: () => void;
-  onProfileUpdate: () => void;
+  /**
+   * Called after the user's profile or avatar is updated. If a new avatar URL
+   * is available it will be passed so the parent can update immediately.
+   */
+  onProfileUpdate: (newAvatarUrl?: string) => void;
 }
 
 const UserProfile = ({ onClose, onProfileUpdate }: UserProfileProps) => {
@@ -141,7 +145,8 @@ const UserProfile = ({ onClose, onProfileUpdate }: UserProfileProps) => {
 
   const handleAvatarUpdate = (newUrl: string) => {
     setAvatarUrl(newUrl);
-    onProfileUpdate();
+    // Inform parent immediately with the new URL so the header can update
+    onProfileUpdate(newUrl);
   };
 
   const getUserInitials = () => {
