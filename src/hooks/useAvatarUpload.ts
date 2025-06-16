@@ -103,7 +103,7 @@ export function useAvatarUpload() {
         .from('avatars')
         .getPublicUrl(fileName);
 
-      // Update profile with avatar URL
+      // Update profile with avatar URL (without cache busting)
       const { error: updateError } = await supabase
         .from('profiles')
         .update({ avatar_url: data.publicUrl })
@@ -117,7 +117,10 @@ export function useAvatarUpload() {
       });
 
       setUploading(false);
-      return data.publicUrl;
+
+      // Append timestamp to bust CDN/browser cache
+      const publicUrlWithTs = `${data.publicUrl}?t=${Date.now()}`;
+      return publicUrlWithTs;
     } catch (error: any) {
       console.error('Error uploading avatar:', error);
       toast({

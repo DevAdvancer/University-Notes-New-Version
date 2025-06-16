@@ -34,7 +34,8 @@ const DashboardHeader = ({ onManageUsers, onAboutPage }: DashboardHeaderProps) =
         .single();
 
       if (data) {
-        setAvatarUrl(data.avatar_url);
+        const url = data.avatar_url ? `${data.avatar_url}?t=${Date.now()}` : null;
+        setAvatarUrl(url);
         setFullName(data.full_name || '');
       }
     } catch (error) {

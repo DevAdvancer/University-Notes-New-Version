@@ -41,7 +41,8 @@ const UserProfile = ({ onClose, onProfileUpdate }: UserProfileProps) => {
 
       if (error) throw error;
       setFullName(data.full_name || '');
-      setAvatarUrl(data.avatar_url);
+      const url = data.avatar_url ? `${data.avatar_url}?t=${Date.now()}` : null;
+      setAvatarUrl(url);
     } catch (error) {
       console.error('Error fetching user profile:', error);
     }
