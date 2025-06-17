@@ -530,10 +530,6 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div
-                    className="prose prose-invert text-slate-300 line-clamp-2 text-sm leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: renderMarkdown(note.content) }}
-                  />
                   <div className="flex items-center justify-between text-xs text-slate-500 pt-4 border-t border-slate-700/50">
                     <div className="flex items-center space-x-2">
                       <User className="h-3 w-3" />
