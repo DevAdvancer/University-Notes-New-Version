@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useImageUpload } from "@/hooks/useImageUpload";
+import { renderMarkdown as parseMarkdown } from "@/lib/markdown";
 
 interface Note {
   id?: string;
@@ -283,33 +284,9 @@ const NoteEditor = ({ note, onClose, onSave }: NoteEditorProps) => {
     }
   };
 
+  // Convert markdown to HTML with file previews and hierarchical lists
   const renderMarkdown = (markdown: string) => {
-    let html = markdown
-      .replace(/```([\s\S]*?)```/gim, (_, code) => {
-        const escaped = code
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/\n/g, "<br/>");
-        return `<pre class="bg-gray-900 border border-gray-700 rounded-xl p-4 overflow-x-auto my-6"><code class="text-green-300 text-sm font-mono">${escaped}</code></pre>`;
-      })
-      .replace(/^> (.*$)/gim, '<blockquote class="border-l-4 border-blue-500 pl-4 italic text-slate-300 my-4">$1</blockquote>')
-      .replace(/!\[(.*?)\]\((.*?)\)/gim, (_match, alt, url) => `<div class="my-8 p-4 bg-gray-900/50 rounded-2xl border border-gray-700/50"><img src="${url}" alt="${alt}" class="w-full rounded-xl shadow-2xl border border-gray-600/30" /></div>`)
-      .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" class="text-blue-400 underline" target="_blank" rel="noopener noreferrer">$1</a>')
-      .replace(/^###\s+(.*$)/gim, '<h3 class="text-2xl font-medium mb-4 text-gray-200">$1</h3>')
-      .replace(/^##\s+(.*$)/gim, '<h2 class="text-3xl font-semibold mb-5 text-white">$1</h2>')
-      .replace(/^#\s+(.*$)/gim, '<h1 class="text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">$1</h1>')
-      .replace(/^---$/gm, '<hr class="my-6 border-gray-700" />')
-      .replace(/^\s*-\s+(.+)$/gm, '<li class="ml-6 mb-2 text-gray-300 flex items-start"><span class="text-blue-400 mr-2">•</span>$1</li>')
-      .replace(/\*\*(.+?)\*\*/gim, '<strong class="font-bold text-blue-300 bg-blue-900/20 px-1 rounded">$1</strong>')
-      .replace(/\*(.+?)\*/gim, '<em class="italic text-purple-300">$1</em>')
-      .replace(/`([^`]+)`/gim, '<code class="bg-gray-900 border border-gray-700 px-3 py-1 rounded-lg text-sm font-mono text-green-300 shadow-sm">$1</code>');
-
-    html = html.replace(/(<li[^>]*>.*?<\/li>\n?)+/gim, match => `<ul class="list-none mb-6">${match}</ul>`);
-    html = html.replace(/\n\n/gim, '</p><p class="mb-6 text-gray-300 leading-relaxed">');
-    html = html.replace(/^(?!<h|<p|<ul|<ol|<blockquote|<pre|<hr)(.+)$/gim, '<p class="mb-6 text-gray-300 leading-relaxed">$1</p>');
-
-    return html;
+    return parseMarkdown(markdown);
   };
 
   const extractVideoId = (url: string) => {
