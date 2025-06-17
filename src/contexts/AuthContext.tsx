@@ -161,15 +161,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setSession(null);
       setUserRole(null);
       setLoading(false);
-      
-      // Sign out from Supabase
-      await supabase.auth.signOut();
-      
-      // Use a small delay before redirect to ensure state is cleared
-      setTimeout(() => {
-        window.location.href = '/';
-      }, 100);
-      
+
+      // Fire-and-forget sign out so UI isn't blocked
+      supabase.auth.signOut().catch((error) => {
+        console.error('Error signing out:', error);
+      });
+
+      // Redirect right away
+      window.location.href = '/';
+
     } catch (error) {
       console.error('Error signing out:', error);
       // Even if signOut fails, clear local state and redirect
@@ -177,9 +177,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setSession(null);
       setUserRole(null);
       setLoading(false);
-      setTimeout(() => {
-        window.location.href = '/';
-      }, 100);
+      window.location.href = '/';
     }
   };
 
