@@ -530,9 +530,6 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <p className="text-slate-300 line-clamp-2 text-sm leading-relaxed">
-                    {note.content.replace(/[#*`]/g, '').substring(0, 120)}...
-                  </p>
                   <div className="flex items-center justify-between text-xs text-slate-500 pt-4 border-t border-slate-700/50">
                     <div className="flex items-center space-x-2">
                       <User className="h-3 w-3" />
