@@ -26,6 +26,7 @@ A modern, collaborative platform for managing and sharing university study notes
 
 - **Comprehensive Notes**
   - Rich formatting and multimedia support, including YouTube links
+  - Image sizes can be customized directly in Markdown using URL parameters
   - Detailed study materials for all your courses
 
 ## 🛠️ Tech Stack
@@ -72,6 +73,17 @@ A modern, collaborative platform for managing and sharing university study notes
    ```sh
    npm run dev
    ```
+
+### Image sizing in Markdown
+
+You can specify custom dimensions for images by appending `#width=` and
+`#height=` parameters to the image URL.
+
+```md
+![Diagram](https://example.com/diagram.png#width=300&height=200)
+```
+
+This renders the image with the provided pixel dimensions.
 
 ## 🤝 Contributing
 
