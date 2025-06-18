@@ -163,12 +163,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch (error) {
       console.error('Error signing out:', error);
     } finally {
-      // Clear local state and redirect regardless of result
+      // Clear local state regardless of result
       setUser(null);
       setSession(null);
       setUserRole(null);
       setLoading(false);
-      window.location.href = '/';
     }
   };
 

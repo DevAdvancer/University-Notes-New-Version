@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { LogOut, Users, Info } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import UserProfile from "@/components/profile/UserProfile";
 import { supabase } from "@/integrations/supabase/client";
@@ -14,6 +15,7 @@ interface DashboardHeaderProps {
 }
 
 const DashboardHeader = ({ onManageUsers, onAboutPage }: DashboardHeaderProps) => {
+  const navigate = useNavigate();
   const { user, userRole, signOut } = useAuth();
   const [showProfile, setShowProfile] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
@@ -64,6 +66,7 @@ const DashboardHeader = ({ onManageUsers, onAboutPage }: DashboardHeaderProps) =
 
   const handleSignOut = async () => {
     await signOut();
+    navigate('/');
   };
 
   const handleProfileUpdate = () => {
