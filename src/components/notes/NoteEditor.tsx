@@ -55,8 +55,8 @@ const NoteEditor = ({ note, onClose, onSave }: NoteEditorProps) => {
   // This only affects images inserted via the editor.
   const compressImage = (
     file: File,
-    maxWidth = 800,
-    maxHeight = 800,
+    maxWidth = 400,
+    maxHeight = 400,
     quality = 0.8
   ): Promise<File> => {
     return new Promise((resolve) => {
@@ -67,7 +67,7 @@ const NoteEditor = ({ note, onClose, onSave }: NoteEditorProps) => {
       img.onload = () => {
         // Calculate new dimensions
         let { width, height } = img;
-        
+
         if (width > height) {
           if (width > maxWidth) {
             height = (height * maxWidth) / width;
@@ -85,16 +85,16 @@ const NoteEditor = ({ note, onClose, onSave }: NoteEditorProps) => {
 
         // Draw and compress
         ctx.drawImage(img, 0, 0, width, height);
-        
+
         canvas.toBlob(
           (blob) => {
             if (!blob) return resolve(file);
-            
-            const compressedFile = new File([blob], file.name, { 
+
+            const compressedFile = new File([blob], file.name, {
               type: 'image/jpeg',
               lastModified: Date.now()
             });
-            
+
             console.log(`Image compressed: ${(file.size / 1024).toFixed(2)}KB → ${(compressedFile.size / 1024).toFixed(2)}KB`);
             resolve(compressedFile);
           },
@@ -227,7 +227,7 @@ const NoteEditor = ({ note, onClose, onSave }: NoteEditorProps) => {
     }
 
     setSaving(true);
-    
+
     try {
       if (note?.id) {
         const { error } = await supabase
@@ -264,7 +264,7 @@ const NoteEditor = ({ note, onClose, onSave }: NoteEditorProps) => {
         title: "Note Saved",
         description: "Your note has been saved successfully.",
       });
-      
+
       onSave();
       onClose();
     } catch (error: any) {
@@ -315,9 +315,9 @@ const NoteEditor = ({ note, onClose, onSave }: NoteEditorProps) => {
         <div className="max-w-7xl mx-auto px-8 py-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
-              <Button 
-                variant="ghost" 
-                onClick={onClose} 
+              <Button
+                variant="ghost"
+                onClick={onClose}
                 className="flex items-center space-x-3 text-slate-300 hover:text-white hover:bg-slate-800/80 px-6 py-3 rounded-xl transition-all duration-200 group"
               >
                 <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
@@ -342,9 +342,9 @@ const NoteEditor = ({ note, onClose, onSave }: NoteEditorProps) => {
               <Badge className={`${getStatusColor(noteData.status)} px-6 py-3 text-sm font-bold rounded-full`}>
                 {noteData.status.replace("-", " ").toUpperCase()}
               </Badge>
-              <Button 
-                onClick={handleSave} 
-                disabled={saving} 
+              <Button
+                onClick={handleSave}
+                disabled={saving}
                 className="flex items-center space-x-3 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 hover:from-blue-700 hover:via-purple-700 hover:to-blue-700 text-white px-8 py-3 shadow-xl hover:shadow-blue-500/25 transition-all duration-200 rounded-xl font-semibold"
               >
                 <Save className="h-5 w-5" />
@@ -431,7 +431,7 @@ const NoteEditor = ({ note, onClose, onSave }: NoteEditorProps) => {
                   <span>Preview</span>
                 </TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="edit" className="mt-8">
                 <div
                   className="relative"
@@ -502,13 +502,13 @@ Drag and drop images directly into this editor or use the upload button above. I
                   </div>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="preview" className="mt-8">
                 <div className="border border-slate-600/50 rounded-2xl p-12 bg-gradient-to-br from-slate-800/30 to-slate-700/30 backdrop-blur-sm min-h-[700px]">
-                  <div 
+                  <div
                     className="prose prose-invert max-w-none prose-headings:text-white prose-p:text-slate-300 prose-strong:text-white prose-em:text-slate-200"
-                    dangerouslySetInnerHTML={{ 
-                      __html: renderMarkdown(noteData.content) 
+                    dangerouslySetInnerHTML={{
+                      __html: renderMarkdown(noteData.content)
                     }}
                   />
                   {noteData.youtube_url && extractVideoId(noteData.youtube_url) && (
