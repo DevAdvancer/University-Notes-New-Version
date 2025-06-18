@@ -155,23 +155,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signOut = async () => {
     try {
-      // Clear state immediately for faster UI response
-      setUser(null);
-      setSession(null);
-      setUserRole(null);
-      setLoading(false);
-
-      // Fire-and-forget sign out so UI isn't blocked
-      supabase.auth.signOut().catch((error) => {
+      // Await Supabase sign out to ensure tokens are cleared
+      const { error } = await supabase.auth.signOut();
+      if (error) {
         console.error('Error signing out:', error);
-      });
-
-      // Redirect right away
-      window.location.href = '/';
-
+      }
     } catch (error) {
       console.error('Error signing out:', error);
-      // Even if signOut fails, clear local state and redirect
+    } finally {
+      // Clear local state and redirect regardless of result
       setUser(null);
       setSession(null);
       setUserRole(null);
