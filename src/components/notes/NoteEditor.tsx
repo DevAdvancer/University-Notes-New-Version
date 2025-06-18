@@ -51,7 +51,14 @@ const NoteEditor = ({ note, onClose, onSave }: NoteEditorProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Image compression function
-  const compressImage = (file: File, maxWidth = 1200, maxHeight = 1200, quality = 0.8): Promise<File> => {
+  // Compress uploaded images to keep storage usage low.
+  // This only affects images inserted via the editor.
+  const compressImage = (
+    file: File,
+    maxWidth = 800,
+    maxHeight = 800,
+    quality = 0.8
+  ): Promise<File> => {
     return new Promise((resolve) => {
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d')!;
@@ -409,16 +416,16 @@ const NoteEditor = ({ note, onClose, onSave }: NoteEditorProps) => {
           <CardContent className="p-8">
             <Tabs value={activeTab} onValueChange={setActiveTab}>
               <TabsList className="grid w-full grid-cols-2 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-2 mb-8">
-                <TabsTrigger 
-                  value="edit" 
-                  className="flex items-center space-x-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600/80 data-[state=active]:to-purple-600/80 text-white rounded-xl py-4 text-lg font-semibold transition-all duration-200"
+                <TabsTrigger
+                  value="edit"
+                  className="flex items-center space-x-3 h-12 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600/80 data-[state=active]:to-purple-600/80 text-white rounded-xl py-3 text-lg font-semibold transition-colors duration-200"
                 >
                   <Edit className="h-5 w-5" />
                   <span>Write & Edit</span>
                 </TabsTrigger>
-                <TabsTrigger 
-                  value="preview" 
-                  className="flex items-center space-x-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600/80 data-[state=active]:to-purple-600/80 text-white rounded-xl py-4 text-lg font-semibold transition-all duration-200"
+                <TabsTrigger
+                  value="preview"
+                  className="flex items-center space-x-3 h-12 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600/80 data-[state=active]:to-purple-600/80 text-white rounded-xl py-3 text-lg font-semibold transition-colors duration-200"
                 >
                   <Eye className="h-5 w-5" />
                   <span>Preview</span>
