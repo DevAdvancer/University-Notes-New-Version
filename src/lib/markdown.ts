@@ -15,7 +15,7 @@ export function renderMarkdown(markdown: string): string {
   html = html.replace(/<p>(<div class="my-6">[\s\S]*?<\/div>)<\/p>/gim, '$1');
 
   html = html.replace(/<img src="(.*?)" alt="(.*?)"[^>]*>/gim, (match, src, alt) => {
-    return `<div class="my-8 p-4 bg-gray-900/50 rounded-2xl border border-gray-700/50"><img src="${src}" alt="${alt}" class="w-full rounded-xl shadow-2xl border border-gray-600/30" /></div>`;
+    return `<div class="my-8 p-4 bg-gray-900/50 rounded-2xl border border-gray-700/50 max-w-screen-md mx-auto"><img src="${src}" alt="${alt}" class="w-full h-auto rounded-xl shadow-2xl border border-gray-600/30" /></div>`;
   });
 
   return html;
