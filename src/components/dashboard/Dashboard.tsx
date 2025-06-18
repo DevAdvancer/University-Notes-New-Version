@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -36,6 +37,7 @@ interface DashboardProps {
 }
 
 const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) => {
+  const navigate = useNavigate();
   const { user, userRole, signOut } = useAuth();
   const [notes, setNotes] = useState<Note[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -178,6 +180,7 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
 
   const handleSignOut = async () => {
     await signOut();
+    navigate('/');
   };
 
   const getAvatarText = () => {

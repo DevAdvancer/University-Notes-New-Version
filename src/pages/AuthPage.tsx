@@ -39,7 +39,7 @@ const AuthPage = () => {
         title: "Welcome back!",
         description: "You have successfully logged in.",
       });
-      navigate('/');
+      navigate('/dashboard');
     }
     setIsLoading(false);
   };
