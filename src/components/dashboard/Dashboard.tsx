@@ -242,7 +242,7 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950">
         {/* Header */}
         <header className="bg-gradient-to-r from-slate-900/95 to-indigo-900/95 backdrop-blur-xl border-b border-slate-800 px-8 py-6 shadow-2xl">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-center space-x-6">
               <Button 
                 variant="ghost" 
@@ -269,7 +269,7 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
         <div className="max-w-7xl mx-auto px-8 py-12">
           <Card className="bg-gradient-to-br from-slate-900/90 to-indigo-900/30 backdrop-blur-xl border border-slate-700/50 shadow-2xl rounded-3xl">
             <CardHeader className="pb-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <div className="space-y-3">
                   <label className="text-slate-400 text-sm font-semibold">Subject Code</label>
                   <div className="bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white">
@@ -336,7 +336,7 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
 
       {/* Header */}
       <header className="relative z-10 bg-gradient-to-r from-slate-900/95 via-indigo-900/95 to-slate-900/95 backdrop-blur-xl border-b border-slate-800 px-8 py-6 shadow-2xl">
-        <div className="max-w-8xl mx-auto flex items-center justify-between">
+        <div className="max-w-8xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-4">
               <div className="p-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl">
@@ -394,7 +394,7 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
 
       {/* Stats Cards */}
       <div className="max-w-8xl mx-auto px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <Card className="bg-gradient-to-br from-blue-900/50 to-blue-800/30 backdrop-blur-xl border border-blue-700/30 shadow-xl rounded-2xl">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -461,15 +461,15 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
         {/* Controls */}
         <Card className="bg-slate-900/50 backdrop-blur-xl border border-slate-700/50 shadow-xl rounded-2xl mb-8">
           <CardContent className="p-8">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 w-full">
                 <div className="relative">
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
                   <Input
                     placeholder="Search notes..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-12 w-96 bg-slate-800/50 border-slate-600/50 text-white placeholder-slate-400 rounded-xl h-12 text-lg focus:border-blue-400 focus:ring-blue-400/20"
+                    className="pl-12 w-full sm:w-96 bg-slate-800/50 border-slate-600/50 text-white placeholder-slate-400 rounded-xl h-12 text-lg focus:border-blue-400 focus:ring-blue-400/20"
                   />
                 </div>
                 <div className="flex items-center space-x-3">
@@ -501,7 +501,7 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
         </Card>
 
         {/* Notes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredNotes.map((note) => (
             <Card 
               key={note.id} 
