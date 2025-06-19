@@ -14,11 +14,11 @@ import { Link } from "react-router-dom";
 const AuthPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [loginData, setLoginData] = useState({ email: "", password: "" });
-  const [signupData, setSignupData] = useState({ 
-    fullName: "", 
-    email: "", 
-    password: "", 
-    confirmPassword: "" 
+  const [signupData, setSignupData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
   });
   const { signIn, signUp } = useAuth();
   const { toast } = useToast();
@@ -27,7 +27,7 @@ const AuthPage = () => {
   const handleLogin = async () => {
     setIsLoading(true);
     const { error } = await signIn(loginData.email, loginData.password);
-    
+
     if (error) {
       toast({
         title: "Login Failed",
@@ -56,7 +56,7 @@ const AuthPage = () => {
 
     setIsLoading(true);
     const { error } = await signUp(signupData.email, signupData.password, signupData.fullName);
-    
+
     if (error) {
       toast({
         title: "Signup Failed",
@@ -82,8 +82,8 @@ const AuthPage = () => {
       </div>
 
       {/* Subtle Grid Pattern */}
-      <div 
-        className="absolute inset-0 opacity-10" 
+      <div
+        className="absolute inset-0 opacity-10"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M0 0h40v40H0V0zm20 20a20 20 0 1 1 0-40 20 20 0 0 1 0 40z'/%3E%3C/g%3E%3C/svg%3E")`
         }}
@@ -104,7 +104,7 @@ const AuthPage = () => {
               </p>
             </div>
           </Link>
-          
+
           <Link to="/">
             <Button variant="ghost" className="text-white hover:bg-white/10">
               <ArrowLeft className="h-4 w-4 mr-2" />
@@ -137,7 +137,7 @@ const AuthPage = () => {
                     <TabsTrigger value="login" className="data-[state=active]:bg-white/20 text-white">Login</TabsTrigger>
                     <TabsTrigger value="signup" className="data-[state=active]:bg-white/20 text-white">Sign Up</TabsTrigger>
                   </TabsList>
-                  
+
                   <TabsContent value="login" className="space-y-4 mt-6">
                     <div className="space-y-2">
                       <Label htmlFor="login-email" className="text-gray-200">Email</Label>
@@ -167,15 +167,15 @@ const AuthPage = () => {
                         />
                       </div>
                     </div>
-                    <Button 
-                      onClick={handleLogin} 
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg transform hover:scale-105 transition-all duration-200" 
+                    <Button
+                      onClick={handleLogin}
+                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg transform hover:scale-105 transition-all duration-200"
                       disabled={isLoading}
                     >
                       {isLoading ? "Logging in..." : "Login"}
                     </Button>
                   </TabsContent>
-                  
+
                   <TabsContent value="signup" className="space-y-4 mt-6">
                     <div className="space-y-2">
                       <Label htmlFor="signup-name" className="text-gray-200">Full Name</Label>
@@ -233,9 +233,9 @@ const AuthPage = () => {
                         />
                       </div>
                     </div>
-                    <Button 
-                      onClick={handleSignup} 
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg transform hover:scale-105 transition-all duration-200" 
+                    <Button
+                      onClick={handleSignup}
+                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg transform hover:scale-105 transition-all duration-200"
                       disabled={isLoading}
                     >
                       {isLoading ? "Creating account..." : "Sign Up"}
@@ -250,7 +250,7 @@ const AuthPage = () => {
         {/* Footer */}
         <footer className="p-8 text-center border-t border-white/10 backdrop-blur-sm bg-white/5">
           <p className="text-gray-400 mb-2">
-            © 2024 University Study Notes. Empowering students worldwide.
+            © 2025 University Study Notes. Empowering students worldwide.
           </p>
           <p className="text-gray-500 text-sm">
             Built with ❤️ for academic success

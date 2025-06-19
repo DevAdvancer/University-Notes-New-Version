@@ -68,7 +68,7 @@ const ExplorePage = () => {
               </p>
             </div>
           </div>
-          
+
           <Link to="/">
             <Button variant="ghost" className="text-white hover:bg-white/10">
               <ArrowLeft className="h-4 w-4 mr-2" />
@@ -98,8 +98,8 @@ const ExplorePage = () => {
             {/* Features Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               {features.map((feature, index) => (
-                <Card 
-                  key={index} 
+                <Card
+                  key={index}
                   className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/20 hover:border-white/30 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
                 >
                   <CardHeader className="pb-4">
@@ -136,12 +136,12 @@ const ExplorePage = () => {
                   Join the Learning Revolution
                 </h3>
                 <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
-                  Experience the future of academic success with our comprehensive note-taking platform. 
+                  Experience the future of academic success with our comprehensive note-taking platform.
                   Start your journey today and see the difference it makes.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
                   <Link to="/auth">
-                    <Button 
+                    <Button
                       size="lg"
                       className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white px-16 py-4 text-xl font-bold shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all duration-300"
                     >
@@ -149,8 +149,8 @@ const ExplorePage = () => {
                     </Button>
                   </Link>
                   <Link to="/">
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       size="lg"
                       className="border-2 border-white/30 text-white hover:bg-white/10 px-16 py-4 text-xl font-semibold backdrop-blur-sm hover:border-white/50 transition-all duration-200"
                     >
@@ -166,7 +166,7 @@ const ExplorePage = () => {
         {/* Footer */}
         <footer className="p-8 text-center border-t border-white/10 backdrop-blur-sm bg-white/5">
           <p className="text-gray-400 mb-2">
-            © 2024 University Study Notes. Empowering students worldwide.
+            © 2025 University Study Notes. Empowering students worldwide.
           </p>
           <p className="text-gray-500 text-sm">
             Built with ❤️ for academic success

@@ -158,7 +158,7 @@ const AboutPage = () => {
         {/* Footer */}
         <footer className="p-8 text-center border-t border-white/10 backdrop-blur-sm bg-white/5">
           <p className="text-gray-400 mb-2">
-            © 2024 University Study Notes. Empowering students worldwide.
+            © 2025 University Study Notes. Empowering students worldwide.
           </p>
           <p className="text-gray-500 text-sm">
             Built with ❤️ for academic success
