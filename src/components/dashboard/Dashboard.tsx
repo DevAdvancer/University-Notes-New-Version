@@ -243,7 +243,7 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
         {/* Header */}
         <header className="bg-gradient-to-r from-slate-900/95 to-indigo-900/95 backdrop-blur-xl border-b border-slate-800 px-8 py-6 shadow-2xl">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-center space-x-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
               <Button 
                 variant="ghost" 
                 onClick={() => setSelectedNote(null)} 
@@ -337,8 +337,8 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
       {/* Header */}
       <header className="relative z-10 bg-gradient-to-r from-slate-900/95 via-indigo-900/95 to-slate-900/95 backdrop-blur-xl border-b border-slate-800 px-8 py-6 shadow-2xl">
         <div className="max-w-8xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
               <div className="p-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl">
                 <GraduationCap className="h-8 w-8 text-white" />
               </div>
@@ -355,7 +355,7 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
               </div>
             </div>
           </div>
-          <div className="flex items-center space-x-6">
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-6">
             <Badge 
               variant="outline" 
               className="border-blue-500/50 text-blue-400 bg-blue-500/10 px-4 py-2 rounded-full font-semibold"
