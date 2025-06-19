@@ -47,7 +47,7 @@ const WelcomePage = ({ onLoginRequired, onExploreFeatures, onAboutPage }: Welcom
 
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Enhanced Header */}
-        <header className="p-6 flex justify-between items-center backdrop-blur-sm bg-white/5 border-b border-white/10">
+        <header className="p-6 mobile-header backdrop-blur-sm bg-white/5 border-b border-white/10">
           <div className="flex items-center space-x-4">
             <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl shadow-lg">
               <FileText className="h-8 w-8 text-white" />
@@ -61,7 +61,7 @@ const WelcomePage = ({ onLoginRequired, onExploreFeatures, onAboutPage }: Welcom
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 mobile-wrap">
             <Button
               onClick={onAboutPage}
               variant="ghost"
@@ -89,7 +89,7 @@ const WelcomePage = ({ onLoginRequired, onExploreFeatures, onAboutPage }: Welcom
                   <Sparkles className="h-4 w-4 text-blue-300" />
                   <span className="text-blue-200 text-sm font-medium">Revolutionize Your Study Experience</span>
                 </div>
-                <h2 className="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-6 leading-tight">
+                <h2 className="hero-heading">
                   Study Smarter
                   <span className="block text-white">Learn Faster</span>
                 </h2>
@@ -119,7 +119,7 @@ const WelcomePage = ({ onLoginRequired, onExploreFeatures, onAboutPage }: Welcom
             </div>
 
             {/* Enhanced Features Grid */}
-            <div className="grid md:grid-cols-3 gap-8 mb-20">
+            <div className="feature-grid">
               {features.map((feature, index) => (
                 <Card
                   key={index}
@@ -146,7 +146,7 @@ const WelcomePage = ({ onLoginRequired, onExploreFeatures, onAboutPage }: Welcom
                     <span className="text-yellow-200 font-medium">Join 100+ Students</span>
                   </div>
                 </div>
-                <h3 className="text-4xl font-bold text-white mb-6">
+                <h3 className="cta-heading">
                   Ready to Transform Your Studies?
                 </h3>
                 <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
