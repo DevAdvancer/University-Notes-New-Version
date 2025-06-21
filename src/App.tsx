@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -13,6 +12,7 @@ import AuthPage from "./pages/AuthPage";
 import ExplorePage from "./pages/ExplorePage";
 import AboutPage from "./pages/AboutPage";
 import RequireAuth from "@/components/RequireAuth";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 const queryClient = new QueryClient();
 
@@ -59,6 +59,7 @@ const App = () => (
             />
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
