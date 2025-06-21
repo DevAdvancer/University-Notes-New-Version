@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,6 +9,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import ForgotPassword from "@/components/auth/ForgotPassword";
 
 const AuthPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,6 +23,7 @@ const AuthPage = () => {
   const { signIn, signUp } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [showForgot, setShowForgot] = useState(false);
 
   const handleLogin = async () => {
     setIsLoading(true);
@@ -139,41 +140,64 @@ const AuthPage = () => {
                   </TabsList>
 
                   <TabsContent value="login" className="space-y-4 mt-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="login-email" className="text-gray-200">Email</Label>
-                      <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                        <Input
-                          id="login-email"
-                          type="email"
-                          placeholder="your@university.edu"
-                          value={loginData.email}
-                          onChange={(e) => setLoginData(prev => ({ ...prev, email: e.target.value }))}
-                          className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400 backdrop-blur-sm"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="login-password" className="text-gray-200">Password</Label>
-                      <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                        <Input
-                          id="login-password"
-                          type="password"
-                          placeholder="••••••••"
-                          value={loginData.password}
-                          onChange={(e) => setLoginData(prev => ({ ...prev, password: e.target.value }))}
-                          className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400 backdrop-blur-sm"
-                        />
-                      </div>
-                    </div>
-                    <Button
-                      onClick={handleLogin}
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg transform hover:scale-105 transition-all duration-200"
-                      disabled={isLoading}
-                    >
-                      {isLoading ? "Logging in..." : "Login"}
-                    </Button>
+                    {showForgot ? (
+                      <>
+                        <ForgotPassword />
+                        <Button
+                          variant="ghost"
+                          className="w-full mt-2 text-blue-400 hover:underline"
+                          type="button"
+                          onClick={() => setShowForgot(false)}
+                        >
+                          Back to Login
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <div className="space-y-2">
+                          <Label htmlFor="login-email" className="text-gray-200">Email</Label>
+                          <div className="relative">
+                            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                            <Input
+                              id="login-email"
+                              type="email"
+                              placeholder="your@university.edu"
+                              value={loginData.email}
+                              onChange={(e) => setLoginData(prev => ({ ...prev, email: e.target.value }))}
+                              className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400 backdrop-blur-sm"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="login-password" className="text-gray-200">Password</Label>
+                          <div className="relative">
+                            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                            <Input
+                              id="login-password"
+                              type="password"
+                              placeholder="••••••••"
+                              value={loginData.password}
+                              onChange={(e) => setLoginData(prev => ({ ...prev, password: e.target.value }))}
+                              className="pl-10 bg-white/10 border-white/20 text-white placeholder-gray-400 backdrop-blur-sm"
+                            />
+                          </div>
+                        </div>
+                        <Button
+                          onClick={handleLogin}
+                          className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg transform hover:scale-105 transition-all duration-200"
+                          disabled={isLoading}
+                        >
+                          {isLoading ? "Logging in..." : "Login"}
+                        </Button>
+                        <button
+                          type="button"
+                          className="w-full text-sm text-blue-400 hover:underline mt-2"
+                          onClick={() => setShowForgot(true)}
+                        >
+                          Forgot password?
+                        </button>
+                      </>
+                    )}
                   </TabsContent>
 
                   <TabsContent value="signup" className="space-y-4 mt-6">
