@@ -79,7 +79,7 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
 
     try {
       console.log("Fetching notes for user:", user.id);
-      
+
       // Fetch notes first
       const { data: notesData, error: notesError } = await supabase
         .from('notes')
@@ -100,9 +100,9 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
           ...notesData.map(note => note.author_id),
           ...notesData.map(note => note.last_editor_id).filter(Boolean)
         ])];
-        
+
         console.log('User IDs to fetch profiles for:', userIds);
-        
+
         // Fetch all profiles for these user IDs in one query
         const { data: profilesData, error: profilesError } = await supabase
           .from('profiles')
@@ -129,9 +129,9 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
           // Use last_editor_id if it exists, otherwise fall back to author_id
           const editorId = note.last_editor_id || note.author_id;
           const editorProfile = profilesMap.get(editorId);
-          
+
           console.log(`Note ${note.title}: editorId=${editorId}, editorProfile=`, editorProfile);
-          
+
           return {
             ...note,
             status: note.status as "pending" | "completed" | "not-started",
@@ -244,9 +244,9 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
         <header className="bg-gradient-to-r from-slate-900/95 to-indigo-900/95 backdrop-blur-xl border-b border-slate-800 px-8 py-6 shadow-2xl">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-              <Button 
-                variant="ghost" 
-                onClick={() => setSelectedNote(null)} 
+              <Button
+                variant="ghost"
+                onClick={() => setSelectedNote(null)}
                 className="flex items-center space-x-3 text-slate-300 hover:text-white hover:bg-slate-800 px-6 py-3 rounded-xl"
               >
                 <GraduationCap className="h-5 w-5" />
@@ -292,10 +292,10 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
             </CardHeader>
             <CardContent>
               <div className="border border-slate-700 rounded-2xl p-8 bg-slate-800/30 backdrop-blur-sm">
-                <div 
+                <div
                   className="prose prose-invert max-w-none"
-                  dangerouslySetInnerHTML={{ 
-                    __html: renderMarkdown(selectedNote.content) 
+                  dangerouslySetInnerHTML={{
+                    __html: renderMarkdown(selectedNote.content)
                   }}
                 />
                 {selectedNote.youtube_url && extractVideoId(selectedNote.youtube_url) && (
@@ -344,7 +344,7 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
               </div>
               <div>
                 <h1 className="text-3xl font-bold text-white mb-1">
-                  Welcome back, {getUserName()}! 👋
+                  Welcome back, {getUserName()}!
                 </h1>
                 <div className="flex items-center space-x-3 text-slate-400 mt-1">
                   <Users className="h-4 w-4" />
@@ -356,8 +356,8 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
             </div>
           </div>
           <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-6">
-            <Badge 
-              variant="outline" 
+            <Badge
+              variant="outline"
               className="border-blue-500/50 text-blue-400 bg-blue-500/10 px-4 py-2 rounded-full font-semibold"
             >
               {userRole === 'admin' ? 'Admin' : 'Student'}
@@ -372,18 +372,18 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
               </AvatarFallback>
             </Avatar>
             {userRole === 'admin' && onManageUsers && (
-              <Button 
-                variant="outline" 
-                onClick={onManageUsers} 
+              <Button
+                variant="outline"
+                onClick={onManageUsers}
                 className="border-slate-600 text-slate-300 hover:bg-slate-800 rounded-xl px-6 py-3"
               >
                 <Settings className="h-5 w-5 mr-2" />
                 Manage Users
               </Button>
             )}
-            <Button 
-              variant="outline" 
-              onClick={handleSignOut} 
+            <Button
+              variant="outline"
+              onClick={handleSignOut}
               className="border-slate-600 text-slate-300 hover:bg-slate-800 rounded-xl px-6 py-3"
             >
               <LogOut className="h-5 w-5" />
@@ -408,7 +408,7 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
               </div>
             </CardContent>
           </Card>
-          
+
           <Card className="bg-gradient-to-br from-emerald-900/50 to-emerald-800/30 backdrop-blur-xl border border-emerald-700/30 shadow-xl rounded-2xl">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -488,8 +488,8 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
               </div>
               {/* Only show New Note button if user has permission */}
               {(userProfile?.can_create_notes || userRole === 'admin') && (
-                <Button 
-                  onClick={onCreateNote} 
+                <Button
+                  onClick={onCreateNote}
                   className="flex items-center space-x-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-blue-500/25 transition-all duration-200"
                 >
                   <Plus className="h-5 w-5" />
@@ -503,8 +503,8 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
         {/* Notes Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredNotes.map((note) => (
-            <Card 
-              key={note.id} 
+            <Card
+              key={note.id}
               className="bg-gradient-to-br from-slate-900/80 to-slate-800/50 backdrop-blur-xl border border-slate-700/50 cursor-pointer hover:bg-slate-800/80 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10 rounded-2xl group"
               onClick={() => handleNoteClick(note)}
             >
@@ -558,12 +558,12 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
               <h3 className="text-2xl font-bold text-white mb-4">No notes available</h3>
               <p className="text-slate-400 text-lg max-w-md mx-auto leading-relaxed">
                 {(userProfile?.can_create_notes || userRole === 'admin')
-                  ? "Create your first study note to get started on your learning journey" 
+                  ? "Create your first study note to get started on your learning journey"
                   : "No study notes have been created yet. Check back later for new content."
                 }
               </p>
               {(userProfile?.can_create_notes || userRole === 'admin') && (
-                <Button 
+                <Button
                   onClick={onCreateNote}
                   className="mt-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-blue-500/25 transition-all duration-200"
                 >
@@ -578,8 +578,8 @@ const Dashboard = ({ onCreateNote, onEditNote, onManageUsers }: DashboardProps) 
 
       {/* Profile Modal */}
       {showProfile && (
-        <UserProfile 
-          onClose={() => setShowProfile(false)} 
+        <UserProfile
+          onClose={() => setShowProfile(false)}
           onProfileUpdate={fetchUserProfile}
         />
       )}
